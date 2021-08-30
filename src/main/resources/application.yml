@@ -1,0 +1,10 @@
+cloud:
+  aws:
+    region:
+      static: us-east-1
+      auto: false
+    credentials:
+      access-key: AKIAVKIAEZFW7OY3URG5
+      secret-key: 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
+    end-point:
+      uri: arn:aws:sns:us-east-1:365609404781:my-first-topic

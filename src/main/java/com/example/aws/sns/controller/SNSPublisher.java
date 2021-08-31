@@ -11,24 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SNSPublisher {
 
+    String TOPIC_ARN = "arn:aws:sns:us-east-1:365609404781:my-first-topic";
     @Autowired
-    private AmazonSNSClient snsClient;
-
-    String TOPIC_ARN="arn:aws:sns:us-east-1:365609404781:my-first-topic" ;
+    private AmazonSNSClient amazonSNSClient;
 
     @GetMapping("/sendNotification")
-    public String publishMessageToTopic(){
-        PublishRequest publishRequest=new PublishRequest(TOPIC_ARN,buildEmailBody(),"Notification: Network connectivity issue");
-        snsClient.publish(publishRequest);
-        return "Notification send successfully !!";
+    public String publishMessageToTopic() {
+        PublishRequest publishRequest = new PublishRequest(TOPIC_ARN, buildEmailBody(), "Deployment successfull");
+        amazonSNSClient.publish(publishRequest);
+        return "Notification send Successfully";
     }
 
-    private String buildEmailBody(){
-        return "Dear Employee ,\n" +
-                "\n" +
-                "\n" +
-                "Connection down Bangalore."+"\n"+
-                "All the servers in Bangalore Data center are not accessible. We are working on it ! \n" +
-                "Notification will be sent out as soon as the issue is resolved. For any questions regarding this message please feel free to contact IT Service Support team";
+    private String buildEmailBody() {
+        return "Dear Developers: You have succesfully deployed your project";
     }
 }
